@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
@@ -15,20 +17,15 @@ var commentRoutes       = require("./routes/comments"),
     campgroundRoutes    = require("./routes/campgrounds"),
     authRoutes          = require("./routes/index");
  
-console.log(process.env.DATABASEURL);    
-// local Database
-mongoose.connect(process.env.DATABASEURL);
-
-// hosted Database
-// mongoose.connect("mongodb://matt:password1@ds161322.mlab.com:61322/mattyelpcamp");
-
-
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+mongoose.connect(url);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.locals.moment = require("moment");
 // seed the database
 // seedDB();
 
