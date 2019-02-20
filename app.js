@@ -54,5 +54,5 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("YELPCAMP LAUNCHED");
+    console.log("Home Away From Home LAUNCHED");
 });
